@@ -4,9 +4,10 @@ var fs = require('fs');
 var express = require('express');
 var app = express();
 
+var loadingpath = 'landing/landing.html';
 var contentType = 'text/html';
 
-switch (extname) {
+switch (loadingpath) {
     case '.js':
         contentType = 'text/javascript';
         break;
@@ -17,8 +18,8 @@ switch (extname) {
 
 //Landing Page
 app.get('/', function(req, res) {
-  fs.readFile('landing/landing.html',function (err, data){
-        res.writeHead(200, {'Content-Length' : contentType });
+  fs.readFile(loadingpath,function (err, data){
+        res.writeHead(200, {'Content-Length' : contentType});
         res.write(data);
         res.end();
     });
