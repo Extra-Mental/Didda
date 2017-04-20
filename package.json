@@ -6,6 +6,7 @@
     "node": "6.10.2"
   },
   "dependencies": {
+    "express": "4.15.2",
     "steamcommunity": "3.30.7"
   }
 
