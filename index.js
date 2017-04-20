@@ -12,4 +12,5 @@ app.get('/', function(req, res) {
         res.end();
     });
 });
+app.use(express.static('landing'));
 app.listen((process.env.PORT || 8080));
