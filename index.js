@@ -13,7 +13,4 @@ app.get('/', function(req, res) {
     });
 });
 app.use(express.static('landing'));
-//app.use(express.static('landing/'));
-//app.use(express.static('landing/'));
-//app.use(express.static('landing/'));
 app.listen((process.env.PORT || 8080));
