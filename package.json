@@ -1,12 +1,12 @@
 {
   "name": "Didda",
   "version": "0.1.0",
-  ...
+
   "engines": {
     "node": "6.10.2"
   },
   "dependencies": {
     "steamcommunity": "3.30.7"
   }
-  ...
+
 }
