@@ -36,11 +36,11 @@ app.get('/steamgroupapi', function(req, res) {
 		      "password": process.env.p
 		  }, function(err, sessionID, cookies, steamguard){
         if(err){return res.write("Error: " + err)};
-        res.write("Succ logged into group\n")
+        res.write("Succ logged into group\n");
 
       });
       community.getGroupMembers(process.env.gid, function(err, members) {
-          res.write("Succ in group")
+          res.write("Succ in group");
       });
 
     };
