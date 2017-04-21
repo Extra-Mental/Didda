@@ -16,8 +16,13 @@ app.get('/', function(req, res) {
 
 app.get('/steamgroupapi', function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write("Succ");
-    res.write("Key: " + req.query.key);
+    
+    var key = req.query.key;
+
+    if(!key){return res.write("Unsucc")};
+    if(key != process.env.key){return res.write("Unsucc")};
+
+    res.write("Succ\n");
     res.write("Action: " + req.query.action);
     res.end();
 });
