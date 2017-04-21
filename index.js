@@ -35,7 +35,12 @@ app.get('/steamgroupapi', function(req, res) {
 		      "accountName": process.env.l,
 		      "password": process.env.p
 		  }, function(err, sessionID, cookies, steamguard){
-        if(err){return res.write("Error: " + err)};
+        if(err){
+          console.log(err);
+          res.write("Error logging in");
+          res.end();
+          return;
+        };
         res.write("Succ logged into group\n");
 
       });
