@@ -38,7 +38,7 @@ app.get('/steamgroupapi', function(req, res) {
         if(err){return res.write("Error: " + err)};
         res.write("Succ logged into group\n")
 
-      }):
+      });
       community.getGroupMembers(process.env.gid, function(err, members) {
           res.write("Succ in group")
       });
