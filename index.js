@@ -15,7 +15,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/steamgroupapi', function(req, res) {
-    res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
+    res.writeHead(200, {'Content-Type': 'text/html'});
     res.write("Succ");
     res.end();
 });
