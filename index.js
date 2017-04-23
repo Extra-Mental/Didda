@@ -24,13 +24,25 @@ app.get('/steamgroupapi', function(req, res) {
 
     var key = req.query.key;
 
-    if(!key){return res.write("Unsucc")};
-    if(key != process.env.key){return res.write("Unsucc")};
+    if(!key){
+      res.write("Unsucc")
+      res.end();
+      return;
+    };
+    if(key != process.env.key){
+      res.write("Unsucc")
+      res.end();
+      return;
+    };
 
     Data += "Succ request\n";
 
     var action = req.query.action
-    if(!action){return res.write(Data + "Action no specified")};
+    if(!action){
+      res.write(Data + "Action no specified")
+      res.end();
+      return;
+    };
 
     if(action == "announce"){
 
@@ -42,6 +54,7 @@ app.get('/steamgroupapi', function(req, res) {
           console.log("Error logging in");
           console.log(err);
           res.write(Data + "Error logging in");
+          res.end();
           return;
         };
         Data += "Succ logged into group\n";
@@ -51,6 +64,7 @@ app.get('/steamgroupapi', function(req, res) {
             console.log("Error retreiving group");
             console.log(err);
             res.write(Data + "Error retreiving group");
+            res.end();
             return;
           };
           Data += "Succ retrieved group\n";
@@ -59,13 +73,14 @@ app.get('/steamgroupapi', function(req, res) {
               console.log("Error posting announcement");
               console.log(err);
               res.write(Data + "Error posting announcement")
+              res.end();
               return;
             };
             Data += "Succ posted announcement\n";
+            res.write(Data)
+            res.end()
           });
         });
-        res.write(Data)
-        res.end()
       });
 
     };
