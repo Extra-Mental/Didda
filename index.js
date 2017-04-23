@@ -42,10 +42,12 @@ app.get('/steamgroupapi', function(req, res) {
           return;
         };
         res.write("Succ logged into group\n");
+        //process.env.gid
 
-      });
-      community.getGroupMembers(process.env.gid, function(err, members) {
-          res.write("Succ in group");
+        community.postAnnouncement(103582791458054568, "Test", "Hello", function(err){
+          console.log(err);
+        });
+
       });
 
     };
