@@ -46,7 +46,7 @@ app.get('/steamgroupapi', function(req, res) {
         };
         Data += "Succ logged into group\n";
         //process.env.gid
-        community.getSteamGroup("steamcommunity.com/groups/diddabot", function(err, group) {
+        community.getSteamGroup("diddabot", function(err, group) {
           if(err){
             console.log("Error retreiving group");
             console.log(err);
