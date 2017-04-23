@@ -43,7 +43,7 @@ app.get('/steamgroupapi', function(req, res) {
         };
         res.write("Succ logged into group\n");
         //process.env.gid
-        community.getSteamGroup(103582791458054568, function(err, group) {
+        community.getSteamGroup("103582791458054568", function(err, group) {
           console.log(err);
           group.postAnnouncement("Test", "Hello", function(err){
             console.log(err);
