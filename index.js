@@ -17,7 +17,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/steamgroupapi', function(req, res) {
-    res.writeHead(200, {'Content-Type': 'text/html'});
+    //res.writeHead(200, {'Content-Type': 'text/html'}); Might not be needed?
 
     var key = req.query.key;
 
