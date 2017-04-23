@@ -25,6 +25,7 @@ app.get('/steamgroupapi', function(req, res) {
     if(key != process.env.key){return res.write("Unsucc")};
 
     res.write("Succ\n");
+    res.end();
 
     var action = req.query.action
     if(!action){return res.write("Action no specified")};
@@ -42,6 +43,7 @@ app.get('/steamgroupapi', function(req, res) {
           return;
         };
         res.write("Succ logged into group\n");
+        res.end();
         //process.env.gid
         community.getSteamGroup("103582791458054568", function(err, group) {
           console.log(err);
@@ -53,8 +55,6 @@ app.get('/steamgroupapi', function(req, res) {
       });
 
     };
-
-    res.end();
 });
 
 app.listen((process.env.PORT || 8080));
