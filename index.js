@@ -16,21 +16,21 @@ app.get('/', function(req, res) {
     });
 });
 
+
+//API to post announcement
 app.get('/steamgroupapi', function(req, res) {
+
+    var Data = "";
 
     var key = req.query.key;
 
     if(!key){return res.write("Unsucc")};
     if(key != process.env.key){return res.write("Unsucc")};
 
-    res.write("Succ\n");
+    Data += "Succ request\n";
 
     var action = req.query.action
-    if(!action){
-      res.write("Action no specified")
-      res.end();
-      return;
-    };
+    if(!action){return res.write(Data + "Action no specified")};
 
     if(action == "announce"){
 
@@ -41,32 +41,34 @@ app.get('/steamgroupapi', function(req, res) {
         if(err){
           console.log("Error logging in");
           console.log(err);
-          res.write("Error logging in");
-          res.end();
+          res.write(Data + "Error logging in");
           return;
         };
-        res.write("Succ logged into group\n");
+        Data += "Succ logged into group\n";
         //process.env.gid
         community.getSteamGroup("103582791458054568", function(err, group) {
           if(err){
             console.log("Error retreiving group");
             console.log(err);
+            res.write(Data + "Error retreiving group");
             return;
           };
+          Data += "Succ retrieved group\n";
           group.postAnnouncement("Test", "Hello", function(err){
             if(err){
               console.log("Error posting announcement");
               console.log(err);
+              res.write(Data + "Error posting announcement")
               return;
             };
+            Data += "Succ posted announcement\n";
           });
         });
-
+        res.write(Data)
       });
 
     };
 
-    res.end();
 });
 
 app.listen((process.env.PORT || 8080));
