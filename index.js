@@ -65,6 +65,7 @@ app.get('/steamgroupapi', function(req, res) {
           });
         });
         res.write(Data)
+        res.end()
       });
 
     };
