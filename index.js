@@ -68,7 +68,7 @@ app.get('/steamgroupapi', function(req, res) {
             return;
           };
           Data += "Succ retrieved group\n";
-          group.postAnnouncement(req.query.title, req.query.body, function(err){
+          group.postAnnouncement(Buffer(req.query.title, 'base64'), Buffer(req.query.body, 'base64'), function(err){
             if(err){
               console.log("Error posting announcement");
               console.log(err);
