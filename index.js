@@ -17,7 +17,6 @@ app.get('/', function(req, res) {
 });
 
 app.get('/steamgroupapi', function(req, res) {
-    //res.writeHead(200, {'Content-Type': 'text/html'}); Might not be needed?
 
     var key = req.query.key;
 
@@ -37,6 +36,7 @@ app.get('/steamgroupapi', function(req, res) {
 		      "password": process.env.p
 		  }, function(err, sessionID, cookies, steamguard){
         if(err){
+          console.log("Error logging in");
           console.log(err);
           res.write("Error logging in");
           res.end();
@@ -46,9 +46,17 @@ app.get('/steamgroupapi', function(req, res) {
         res.end();
         //process.env.gid
         community.getSteamGroup("103582791458054568", function(err, group) {
-          console.log(err);
-          group.postAnnouncement("Test", "Hello", function(err){
+          if(err){
+            console.log("Error retreiving group");
             console.log(err);
+            return;
+          };
+          group.postAnnouncement("Test", "Hello", function(err){
+            if(err){
+              console.log("Error posting announcement");
+              console.log(err);
+              return;
+            };
           });
         });
 
