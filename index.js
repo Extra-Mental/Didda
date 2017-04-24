@@ -87,4 +87,25 @@ app.get('/steamgroupapi', function(req, res) {
 
 });
 
+community.login({
+    "accountName": process.env.l,
+    "password": process.env.p
+}, function(err, sessionID, cookies, steamguard){
+  if(err){
+    console.log("Error logging in");
+    console.log(err);
+    return;
+  };
+
+  //process.env.gid
+  community.getSteamGroup("diddabot", function(err, group) {
+    if(err){
+      console.log("Error retreiving group");
+      console.log(err);
+      return;
+    };
+    group.headline = "changed by didda"
+  });
+});
+
 app.listen((process.env.PORT || 8080));
