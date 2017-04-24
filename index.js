@@ -104,7 +104,7 @@ community.login({
       console.log(err);
       return;
     };
-    group.headline = "changed by didda"
+    group.headline = "changed by didda";
   });
 });
 
