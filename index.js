@@ -59,7 +59,7 @@ app.get('/api', function(req, res) {
         };
         Data += "Succ logged into group\n";
         //process.env.gid
-        community.getSteamGroup(Buffer(req.query.groupid, 'base64'), function(err, group) {
+        community.getSteamGroup(Buffer(req.query.groupid, 'base64')+"", function(err, group) {
           if(err){
             console.log("Error retreiving group");
             console.log(err);
