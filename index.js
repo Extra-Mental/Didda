@@ -18,19 +18,19 @@ app.get('/', function(req, res) {
 
 
 //API to post announcement
-app.get('/steamgroupapi', function(req, res) {
+app.get('/api', function(req, res) {
 
     var Data = "";
 
     var key = req.query.key;
 
     if(!key){
-      res.write("Unsucc")
+      res.write("Error: Key missing")
       res.end();
       return;
     };
     if(key != process.env.key){
-      res.write("Unsucc")
+      res.write("Error: Invalid key")
       res.end();
       return;
     };
@@ -39,7 +39,7 @@ app.get('/steamgroupapi', function(req, res) {
 
     var action = req.query.action
     if(!action){
-      res.write(Data + "Action no specified")
+      res.write(Data + "Error: Action no specified")
       res.end();
       return;
     };
@@ -59,7 +59,7 @@ app.get('/steamgroupapi', function(req, res) {
         };
         Data += "Succ logged into group\n";
         //process.env.gid
-        community.getSteamGroup("diddabot", function(err, group) {
+        community.getSteamGroup(Buffer(req.query.groupid, 'base64'), function(err, group) {
           if(err){
             console.log("Error retreiving group");
             console.log(err);
@@ -85,27 +85,6 @@ app.get('/steamgroupapi', function(req, res) {
 
     };
 
-});
-
-community.login({
-    "accountName": process.env.l,
-    "password": process.env.p
-}, function(err, sessionID, cookies, steamguard){
-  if(err){
-    console.log("Error logging in");
-    console.log(err);
-    return;
-  };
-
-  //process.env.gid
-  community.getSteamGroup("diddabot", function(err, group) {
-    if(err){
-      console.log("Error retreiving group");
-      console.log(err);
-      return;
-    };
-    group.headline = "changed by didda";
-  });
 });
 
 app.listen((process.env.PORT || 8080));
