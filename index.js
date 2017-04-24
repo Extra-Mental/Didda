@@ -59,7 +59,7 @@ app.get('/api', function(req, res) {
         };
         Data += "Succ logged into group\n";
         //process.env.gid
-        community.getSteamGroup(Buffer(req.query.groupid, 'base64')+"", function(err, group) {
+        community.getSteamGroup(decodeURI(req.query.groupid), function(err, group) {
           if(err){
             console.log("Error retreiving group");
             console.log(err);
@@ -68,7 +68,7 @@ app.get('/api', function(req, res) {
             return;
           };
           Data += "Succ retrieved group\n";
-          group.postAnnouncement(Buffer(req.query.title, 'base64'), Buffer(req.query.body, 'base64'), function(err){
+          group.postAnnouncement(decodeURI(req.query.title), decodeURI(req.query.body), function(err){
             if(err){
               console.log("Error posting announcement");
               console.log(err);
