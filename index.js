@@ -104,6 +104,7 @@ app.get('/api/wit', function(req, res) {
   const client = new Wit({accessToken: process.env.witkey});
   client.message(decodeURI(req.query.message), {}).then((data) => {
     console.log('Wit.ai response: ' + JSON.stringify(data));
+    res.set('json spaces', 2);
     res.json(data)
     res.end();
   }).catch(console.error);
