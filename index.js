@@ -1,12 +1,10 @@
 console.log("Succ Load");
 
-var fs = require('fs');
 var express = require('express');
 var app = express();
-var SteamCommunity = require('steamcommunity');
-var community = new SteamCommunity();
 
 //Landing Page
+var fs = require('fs');
 app.use(express.static('landing'));
 app.get('/', function(req, res) {
   fs.readFile('landing/landing.html',function (err, data){
@@ -16,10 +14,10 @@ app.get('/', function(req, res) {
     });
 });
 
-require('core/witai.js')
-
 //API to post announcement
-app.get('/api', function(req, res) {
+var SteamCommunity = require('steamcommunity');
+var community = new SteamCommunity();
+app.get('/api', function(req, res) {//Need to change this to /api/steamgcommunity
 
     var Data = "";
 
@@ -88,4 +86,29 @@ app.get('/api', function(req, res) {
 
 });
 
+//Wit.ai requests
+const {Wit, log} = require('node-wit');
+app.get('/api/wit', function(req, res) {
+  var key = req.query.key;
+  if(!key){
+    res.write("Error: Key missing")
+    res.end();
+    return;
+  };
+  if(key != process.env.key){
+    res.write("Error: Invalid key")
+    res.end();
+    return;
+  };
+
+  const client = new Wit({accessToken: process.env.witkey});
+  client.message(req.query.message, {}).then((data) => {
+    console.log('Wit.ai response: ' + JSON.stringify(data));
+    res.json(data)
+    res.end();
+  }).catch(console.error);
+});
+
+
+//Listen
 app.listen((process.env.PORT || 8080));
