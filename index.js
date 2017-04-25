@@ -16,7 +16,7 @@ app.get('/', function(req, res) {
     });
 });
 
-require('.core/witai.js')
+require('core/witai.js')
 
 //API to post announcement
 app.get('/api', function(req, res) {
