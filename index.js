@@ -110,6 +110,40 @@ app.get('/api/wit', function(req, res) {
   }).catch(console.error);
 });
 
+var apiai = require('apiai');
+app.get('/api/apiai', function(req, res) {
+  var key = req.query.key;
+  if(!key){
+    res.write("Error: Key missing")
+    res.end();
+    return;
+  };
+  if(key != process.env.key){
+    res.write("Error: Invalid key")
+    res.end();
+    return;
+  };
+
+  const client = new Wit({accessToken: process.env.apiaikey});
+  client.message(decodeURI(req.query.message), {}).then((data) => {
+    console.log('Wit.ai response: ' + JSON.stringify(data));
+    app.set('json spaces', 2);
+    res.json(data)
+    res.end();
+  }).catch(console.error);
+
+  var app = apiai(process.env.apiaikey);
+  var request = app.textRequest(decodeURI(req.query.message), {
+    sessionId: 'GmodServer'
+  });
+  request.on('response', function(response) {
+      console.log('Api.ai response:\n' + response);
+      app.set('json spaces', 2);
+      res.json(response)
+      res.end();
+  });
+
+});
 
 //Listen
 app.listen((process.env.PORT || 8080));
