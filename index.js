@@ -126,7 +126,7 @@ app.get('/api/apiai', function(req, res) {
 
   var apiaiapp = apiai(''+process.env.apiaikey);
   var request = apiaiapp.textRequest(decodeURI(req.query.message), {
-    sessionId: 'GmodServer'
+    sessionId: ''+req.query.message
   });
   request.on('response', function(response) {
       console.log('Api.ai response:\n' + response);
