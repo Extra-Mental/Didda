@@ -124,8 +124,8 @@ app.get('/api/apiai', function(req, res) {
     return;
   };
 
-  var app = apiai(''+process.env.apiaikey);
-  var request = app.textRequest(decodeURI(req.query.message), {
+  var apiaiapp = apiai(''+process.env.apiaikey);
+  var request = apiaiapp.textRequest(decodeURI(req.query.message), {
     sessionId: 'GmodServer'
   });
   request.on('response', function(response) {
