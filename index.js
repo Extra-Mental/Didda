@@ -138,6 +138,7 @@ app.get('/api/apiai', function(req, res) {
     console.log("API AI ERROR");
     console.log(error);
   });
+  request.end();
 
 });
 
