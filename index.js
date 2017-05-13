@@ -124,15 +124,7 @@ app.get('/api/apiai', function(req, res) {
     return;
   };
 
-  const client = new Wit({accessToken: process.env.apiaikey});
-  client.message(decodeURI(req.query.message), {}).then((data) => {
-    console.log('Wit.ai response: ' + JSON.stringify(data));
-    app.set('json spaces', 2);
-    res.json(data)
-    res.end();
-  }).catch(console.error);
-
-  var app = apiai(process.env.apiaikey);
+  var app = apiai(''+process.env.apiaikey);
   var request = app.textRequest(decodeURI(req.query.message), {
     sessionId: 'GmodServer'
   });
@@ -141,6 +133,10 @@ app.get('/api/apiai', function(req, res) {
       app.set('json spaces', 2);
       res.json(response)
       res.end();
+  });
+  request.on('error', function(error) {
+    console.log("API AI ERROR");
+    console.log(error);
   });
 
 });
