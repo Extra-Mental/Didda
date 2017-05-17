@@ -206,7 +206,7 @@ app.get('/api/test', function(req, res) {
   })
   .catch(function (err) {
     console.error(err.stack);
-    res.write("Error: Failed")
+    res.write("Error: Failed") 
   });
 
 });
