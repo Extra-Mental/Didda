@@ -151,7 +151,7 @@ var path = require('path');
 var http = require('http');
 var https = require('https');
 var urlParse  = require('url').parse;
-var googleTTS = require('..');
+var googleTTS = require('google-tts-api');
 
 function downloadFile (url, dest) {
   return new Promise(function (resolve, reject) {
