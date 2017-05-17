@@ -146,7 +146,6 @@ app.get('/api/apiai', function(req, res) {
 //TEst-----------------------------------------------------------------------------------
 require('es6-promise').polyfill();
 
-var fs = require('fs');
 var path = require('path');
 var http = require('http');
 var https = require('https');
@@ -192,25 +191,24 @@ function downloadFile (url, dest) {
   });
 }
 
-// start
-googleTTS('hello')
-.then(function (url) {
-  console.log(url); // https://translate.google.com/translate_tts?...
-
-  var dest = path.resolve(__dirname, 'hello.mp3'); // file destination
-  console.log('Download to ' + dest + ' ...');
-
-  return downloadFile(url, dest);
-})
-.then(function () {
-  console.log('Download success');
-})
-.catch(function (err) {
-  console.error(err.stack);
-});
 
 app.get('/api/test', function(req, res) {
-  res.sendFile(__dirname+'/hello.mp3')
+  var Msg = req.query.message
+  googleTTS(decodeURI(Msg)).then(function (url) {
+    console.log(url);
+    var dest = path.resolve(__dirname+"/tmp", Msg+'.mp3'); // file destination
+    console.log('Download to ' + dest + ' ...');
+    return downloadFile(url, dest);
+  })
+  .then(function () {
+    console.log('Download success');
+    res.sendFile(__dirname+'/tmp/'+Msg+'.mp3')
+  })
+  .catch(function (err) {
+    console.error(err.stack);
+    res.write("Error: Failed")
+  });
+
 });
 
 
