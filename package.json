@@ -10,8 +10,6 @@
     "steamcommunity": "3.30.7",
     "node-wit": "4.2.0",
     "apiai": "4.0.2",
-    "es6-promise": "4.1.0",
-    "google-tts-api": "0.0.1"
   }
 
 }
