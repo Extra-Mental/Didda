@@ -210,7 +210,7 @@ googleTTS('hello')
 });
 
 app.get('/api/test', function(req, res) {
-  res.sendFile(__dirname+'hello.mp3')
+  res.sendFile(__dirname+'/hello.mp3')
 });
 
 
