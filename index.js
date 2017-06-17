@@ -110,8 +110,7 @@ app.get('/api/wit', function(req, res) {
   }).catch(console.error);
 });
 
-//Wit.ai requests
-const {Wit, log} = require('node-wit');
+//Telegream webhook handler
 app.get('/api/telegremwebhook', function(req, res) {
   var token = req.query.token;
   if(!token){
