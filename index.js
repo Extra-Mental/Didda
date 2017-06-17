@@ -110,35 +110,22 @@ app.get('/api/wit', function(req, res) {
   }).catch(console.error);
 });
 
-var apiai = require('apiai');
-app.get('/api/apiai', function(req, res) {
-  var key = req.query.key;
-  if(!key){
+//Wit.ai requests
+const {Wit, log} = require('node-wit');
+app.get('/api/telegremwebhook', function(req, res) {
+  var token = req.query.token;
+  if(!token){
     res.write("Error: Key missing")
     res.end();
     return;
   };
-  if(key != process.env.key){
+  if(token != process.env.telegramkey){
     res.write("Error: Invalid key")
     res.end();
     return;
   };
 
-  var apiaiapp = apiai(''+process.env.apiaikey);
-  var request = apiaiapp.textRequest(decodeURI(req.query.message), {
-    sessionId: req.query.id
-  });
-  request.on('response', function(response) {
-      console.log('Api.ai response:\n' + response);
-      app.set('json spaces', 2);
-      res.json(response)
-      res.end();
-  });
-  request.on('error', function(error) {
-    console.log("API AI ERROR");
-    console.log(error);
-  });
-  request.end();
+  console.log(req.body)
 
 });
 
