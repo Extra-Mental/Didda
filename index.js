@@ -124,7 +124,8 @@ app.get('/api/telegremwebhook', function(req, res) {
     return;
   };
 
-  console.log(req.body)
+  console.log(JSON.stringify(req.headers))
+  
 
 });
 
