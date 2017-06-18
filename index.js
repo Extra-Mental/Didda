@@ -131,6 +131,9 @@ app.post('/api/telegramwebhook', function(req, res) {
     return;
   };
 
+  res.status(200);
+  res.send();
+
   console.log("Telegram Webhook: Successful query")
   console.log(JSON.stringify(req.body))
   var Name = req.body.message.from.first_name
@@ -145,9 +148,6 @@ app.post('/api/telegramwebhook', function(req, res) {
   bot.sendMessage({to:"325232154290290698", message: Msg},function(err){
     if(err){console.log(err)};
   });
-
-  res.status(200);
-  res.send();
 
 });
 
