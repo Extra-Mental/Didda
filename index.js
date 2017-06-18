@@ -138,7 +138,7 @@ app.post('/api/telegramwebhook', function(req, res) {
   var Text = req.body.message.text
 
 
-  var Msg = Name +" "+ Name2 + ": " + Text
+  var Msg = "[Telegram] " + Name +" "+ Name2 + ": " + Text
 
 
 
