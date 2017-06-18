@@ -135,7 +135,7 @@ app.post('/api/telegramwebhook', function(req, res) {
   console.log(JSON.stringify(req.body))
 
 
-  bot.sendMessage({to:'325232154290290698, message:"test"},function(err){
+  bot.sendMessage({to:325232154290290698, message:"test"},function(err){
     console.log(err);
   });
 
