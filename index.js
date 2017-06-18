@@ -168,7 +168,7 @@ app.post('/api/telegramwebhook', function(req, res) {
 const TelegramBot = require('node-telegram-bot-api');
 const Tbot = new TelegramBot(process.env.telegramkey, {polling: true});
 Dbot.on('message', function(user, userID, channelID, message, event){
-  Tbot.sendMessage(-112659114, user+": "+message);
+  Tbot.sendMessage(-112659114, "*"+user+"*: "+message);
 });
 
 //Listen
