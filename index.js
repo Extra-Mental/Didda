@@ -113,6 +113,10 @@ app.get('/api/wit', function(req, res) {
 //Telegream webhook handler
 var bodyParser = require('body-parser');
 var Discord = require('discord.io');
+var bot = new Discord.Client({
+  token: process.env.discordkey,
+  autorun: true
+});
 app.use(bodyParser.json());
 app.post('/api/telegramwebhook', function(req, res) {
   var token = req.query.token;
@@ -130,12 +134,8 @@ app.post('/api/telegramwebhook', function(req, res) {
   console.log("Telegram Webhook: Successful query")
   console.log(JSON.stringify(req.body))
 
-  var bot = new Discord.Client({
-    token: process.env.discordkey,
-    autorun: true
-  });
 
-  bot.sendMessage({to:325232154290290698, message:"test"},function(err){
+  bot.sendMessage({to:'325232154290290698, message:"test"},function(err){
     console.log(err);
   });
 
