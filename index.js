@@ -135,7 +135,7 @@ app.post('/api/telegramwebhook', function(req, res) {
   console.log(JSON.stringify(req.body))
   var Name = req.body.message.from.first_name
   var Name2 = req.body.message.from.last_name
-  var Text = req.body.message.from.chat.text
+  var Text = req.body.message.text
 
 
   var Msg = Name +" "+ Name2 + ": " + Text
