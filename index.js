@@ -166,14 +166,14 @@ app.post('/api/telegramwebhook', function(req, res) {
 });
 
 //Event for messages in discord
-var http = require('http');
+var request = require('request');
 disbot.on('message', function(user, userID, channelID, message, event){
-  http.get({
-        host: "api.telegram.org",
-        path: "/bot"+process.env.telegramkey+"/sendmessage?chat_id=-112659114&text="+encodeURIComponent(user+": "+message)
-    }, function(response) {
-      console.log("Telegram Message Successful")
-    });
+  console.log("Sending message to telegram")
+  var API = "https://api.telegram.org/bot"+process.env.telegramkey+"/sendmessage?chat_id=-112659114&text="+encodeURIComponent(user+": "+message)
+
+  request(API, function (error, response, body) {
+    if(error){console.log(error)}
+  });
 
 });
 
