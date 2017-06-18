@@ -170,8 +170,7 @@ var http = require('http');
 disbot.on('message', function(user, userID, channelID, message, event){
   http.get({
         host: "api.telegram.org",
-        path: "/bot"+process.env.telegramkey+"/sendmessage?chat_id=-112659114&text="+encodeURIComponent(user+": "+message),
-        agent: false
+        path: "/bot"+process.env.telegramkey+"/sendmessage?chat_id=-112659114&text="+encodeURIComponent(user+": "+message)
     }, function(response) {
       console.log("Telegram Message Successful")
     });
