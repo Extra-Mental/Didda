@@ -143,7 +143,7 @@ app.post('/api/telegramwebhook', function(req, res) {
   if(Text){Msg+=": "+Text}else{return;};
 
   bot.sendMessage({to:"325232154290290698", message: Msg},function(err){
-    console.log(err);
+    if(err){console.log(err)};
   });
 
   res.status(200);
