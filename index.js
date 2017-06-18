@@ -166,7 +166,7 @@ app.post('/api/telegramwebhook', function(req, res) {
 
 //Event for messages in discord
 const TelegramBot = require('node-telegram-bot-api');
-const Tbot = new TelegramBot(token, {polling: true});
+const Tbot = new TelegramBot(process.env.telegramkey, {polling: true});
 Dbot.on('message', function(user, userID, channelID, message, event){
   Tbot.sendMessage(-112659114, user+": "+message);
 });
