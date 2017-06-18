@@ -155,8 +155,8 @@ app.post('/api/telegramwebhook', function(req, res) {
     Msg+=": "+ReplyText
     Msg+="`\n"
   };
-  if(Name){Msg+=Name};
-  if(Name2){Msg+=" "+Name2};
+  if(Name){Msg+="**"+Name+"**"};
+  if(Name2){Msg+=" **"+Name2+"**"};
   if(Text){Msg+=": "+Text}else{return;};
 
   disbot.sendMessage({to:"325232154290290698", message: Msg, tts:true},function(err){
