@@ -137,10 +137,10 @@ app.post('/api/telegramwebhook', function(req, res) {
   var Name2 = req.body.message.from.last_name
   var Text = req.body.message.text
 
-
-  var Msg = "[Telegram] " + Name +" "+ Name2 + ": " + Text
-
-
+  var Msg = "[Telegram] "
+  if(Name){Msg+=Name};
+  if(Name2){Msg+=" "+Name2};
+  if(Name){Msg+=": "+Text};
 
   bot.sendMessage({to:"325232154290290698", message: Msg},function(err){
     console.log(err);
