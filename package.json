@@ -9,7 +9,8 @@
     "express": "4.15.2",
     "steamcommunity": "3.30.7",
     "apiai": "4.0.2",
-    "body-parser": "1.17.2"
+    "body-parser": "1.17.2",
+    "discord.io": "2.5.1"
   }
 
 }
