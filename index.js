@@ -171,7 +171,8 @@ bot.on('message', function(user, userID, channelID, message, event){
   return http.get({
         host: "api.telegram.org",
         path: "/bot"+process.env.telegramkey+"/sendmessage?chat_id=-112659114&text="+encodeURIComponent(user+": "+message),
-        agent: false
+        agent: false,
+        port: 8080
     }, function(response) {
       console.log("Telegram Message Successful")
     });
