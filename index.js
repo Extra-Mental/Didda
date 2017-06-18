@@ -169,6 +169,8 @@ app.post('/api/telegramwebhook', function(req, res) {
 var request = require('request');
 disbot.on('message', function(user, userID, channelID, message, event){
 
+  console.log("UID: " + userID)
+
   if(userID === 325240477290856450){return;};
 
   console.log("Sending message to telegram")
