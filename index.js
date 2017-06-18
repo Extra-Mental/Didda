@@ -132,10 +132,17 @@ app.post('/api/telegramwebhook', function(req, res) {
   };
 
   console.log("Telegram Webhook: Successful query")
-  console.log(JSON.stringify(req.body))
+  //console.log(JSON.stringify(req.body))
+  var Name = req.body.message.from.first_name
+  //var Name2 = req.body
+  //var Text = req.body
 
 
-  bot.sendMessage({to:"325232154290290698", message:"test"},function(err){
+  var Msg = ""
+
+
+
+  bot.sendMessage({to:"325232154290290698", message:Names},function(err){
     console.log(err);
   });
 
