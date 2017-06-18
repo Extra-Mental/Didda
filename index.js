@@ -168,6 +168,9 @@ app.post('/api/telegramwebhook', function(req, res) {
 //Event for messages in discord
 var request = require('request');
 disbot.on('message', function(user, userID, channelID, message, event){
+
+  if(userID === 325240477290856450){return;};
+
   console.log("Sending message to telegram")
   var API = "https://api.telegram.org/bot"+process.env.telegramkey+"/sendmessage?chat_id=-112659114&text="+encodeURIComponent(user+": "+message)
 
