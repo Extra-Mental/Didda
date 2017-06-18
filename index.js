@@ -126,6 +126,7 @@ app.post('/api/telegramwebhook', function(req, res) {
     return;
   };
   if(token != process.env.telegramkey){
+    console.log("Telegram Webhook Error: Invalid key")
     res.write("Error: Invalid key")
     res.end();
     return;
