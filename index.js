@@ -139,12 +139,15 @@ app.post('/api/telegramwebhook', function(req, res) {
   var Name = req.body.message.from.first_name
   var Name2 = req.body.message.from.last_name
   var Text = req.body.message.text
-  var ReplyText = req.body.message.reply_to_message.text
-  var From = req.body.message.reply_to_message.from.first_name
-  var From2 = req.body.message.reply_to_message.from.last_name
+  var ValidReply = req.body.message.reply_to_message
+  if (ValidReply) {
+    var ReplyText = ValidReply.text
+    var From = req.body.message.reply_to_message.from.first_name
+    var From2 = req.body.message.reply_to_message.from.last_name
+  }
 
   var Msg = "<:telegram:325885123646193666> "
-  if(ReplyText){
+  if(ValidReply){
     Msg+="`"
     if(From){Msg+=From};
     if(From2){Msg+=" "+From2};
