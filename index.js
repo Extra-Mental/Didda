@@ -137,7 +137,7 @@ app.post('/api/telegramwebhook', function(req, res) {
   var Name2 = req.body.message.from.last_name
   var Text = req.body.message.text
 
-  var Msg = "[Telegram] "
+  var Msg = ":telegram: "
   if(Name){Msg+=Name};
   if(Name2){Msg+=" "+Name2};
   if(Text){Msg+=": "+Text}else{return;};
