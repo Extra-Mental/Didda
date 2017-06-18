@@ -164,5 +164,12 @@ app.post('/api/telegramwebhook', function(req, res) {
 
 });
 
+//Event for messages in discord
+var http = require('http');
+bot.on('message', function(user, userID, channelID, message, event){
+  var client = http.createClient(80, "https://api.telegram.org/bot"+process.env.telegramkey+"/sendmessage?chat_id=-112659114&text="+user+": "+message);
+  client.request();
+});
+
 //Listen
 app.listen((process.env.PORT || 8080));
