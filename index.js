@@ -111,7 +111,7 @@ app.get('/api/wit', function(req, res) {
 });
 
 //Telegream webhook handler
-app.post('/api/telegremwebhook', function(req, res) {
+app.post('/api/telegramwebhook', function(req, res) {
   var token = req.query.token;
   if(!token){
     res.write("Error: Key missing")
@@ -126,6 +126,8 @@ app.post('/api/telegremwebhook', function(req, res) {
 
   console.log(JSON.stringify(req.headers))
 
+  res.status(200);
+  res.send();
 
 });
 
