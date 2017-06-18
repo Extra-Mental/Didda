@@ -135,7 +135,7 @@ app.post('/api/telegramwebhook', function(req, res) {
     autorun: true
   });
 
-  bot.sendMessage({to:'#the_chat',message:"test"});
+  bot.sendMessage({to:'325232154290290698', message:"test"});
 
   res.status(200);
   res.send();
