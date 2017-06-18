@@ -111,6 +111,8 @@ app.get('/api/wit', function(req, res) {
 });
 
 //Telegream webhook handler
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
 app.post('/api/telegramwebhook', function(req, res) {
   var token = req.query.token;
   if(!token){
@@ -124,8 +126,10 @@ app.post('/api/telegramwebhook', function(req, res) {
     return;
   };
 
+
+
   console.log("Telegram Webhook: Successful query")
-  console.log(req)
+  console.log(request.body)
 
   res.status(200);
   res.send();
