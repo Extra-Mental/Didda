@@ -113,7 +113,7 @@ app.get('/api/wit', function(req, res) {
 //Telegream webhook handler
 var bodyParser = require('body-parser');
 var Discord = require('discord.io');
-var Dbot = new Discord.Client({
+var disbot = new Discord.Client({
   token: process.env.discordkey,
   autorun: true
 });
@@ -159,7 +159,7 @@ app.post('/api/telegramwebhook', function(req, res) {
   if(Name2){Msg+=" "+Name2};
   if(Text){Msg+=": "+Text}else{return;};
 
-  Dbot.sendMessage({to:"325232154290290698", message: Msg, tts:true},function(err){
+  disbot.sendMessage({to:"325232154290290698", message: Msg, tts:true},function(err){
     if(err){console.log(err)};
   });
 
