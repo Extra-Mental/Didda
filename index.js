@@ -147,7 +147,7 @@ app.post('/api/telegramwebhook', function(req, res) {
   if(ReplyText){
     Msg+="`"
     if(From){Msg+=From};
-    if(From){Msg+=" "+From2};
+    if(From2){Msg+=" "+From2};
     Msg+=": "+ReplyText
     Msg+="`\n"
   }else{return;};
