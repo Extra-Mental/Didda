@@ -124,7 +124,8 @@ app.post('/api/telegramwebhook', function(req, res) {
     return;
   };
 
-  console.log(JSON.stringify(req.headers))
+  console.log("Telegram Webhook: Successful query")
+  console.log(JSON.stringify(req.body))
 
   res.status(200);
   res.send();
