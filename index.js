@@ -173,7 +173,7 @@ bot.on('message', function(user, userID, channelID, message, event){
         path: "/bot"+process.env.telegramkey+"/sendmessage?chat_id=-112659114&text="+encodeURIComponent(user+": "+message),
         agent: false
     }, function(response) {
-
+      console.log("Telegram Message Successful")
     });
 
 });
