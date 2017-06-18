@@ -113,7 +113,7 @@ app.get('/api/wit', function(req, res) {
 //Telegream webhook handler
 var bodyParser = require('body-parser');
 var Discord = require('discord.io');
-var bot = new Discord.Client({
+var Dbot = new Discord.Client({
   token: process.env.discordkey,
   autorun: true
 });
@@ -158,25 +158,17 @@ app.post('/api/telegramwebhook', function(req, res) {
   if(Name2){Msg+=" "+Name2};
   if(Text){Msg+=": "+Text}else{return;};
 
-  bot.sendMessage({to:"325232154290290698", message: Msg, tts:true},function(err){
+  Dbot.sendMessage({to:"325232154290290698", message: Msg, tts:true},function(err){
     if(err){console.log(err)};
   });
 
 });
 
 //Event for messages in discord
-var http = require('http');
-bot.on('message', function(user, userID, channelID, message, event){
-
-  return http.get({
-        host: "api.telegram.org",
-        path: "/bot"+process.env.telegramkey+"/sendmessage?chat_id=-112659114&text="+encodeURIComponent(user+": "+message),
-        agent: false,
-        port: 8080
-    }, function(response) {
-      console.log("Telegram Message Successful")
-    });
-
+const TelegramBot = require('node-telegram-bot-api');
+const Tbot = new TelegramBot(token, {polling: true});
+Dbot.on('message', function(user, userID, channelID, message, event){
+  Tbot.sendMessage(-112659114, user+": "+message);
 });
 
 //Listen

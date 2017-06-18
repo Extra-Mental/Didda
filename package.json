@@ -10,7 +10,8 @@
     "steamcommunity": "3.30.7",
     "apiai": "4.0.2",
     "body-parser": "1.17.2",
-    "discord.io": "2.5.1"
+    "discord.io": "2.5.1",
+    "node-telegram-bot-api": "0.27.1"
   }
 
 }
