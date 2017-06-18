@@ -166,6 +166,7 @@ app.post('/api/telegramwebhook', function(req, res) {
 });
 
 //Event for messages in discord
+var http = require('http');
 disbot.on('message', function(user, userID, channelID, message, event){
   http.get({
         host: "api.telegram.org",
