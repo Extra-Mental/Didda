@@ -158,7 +158,7 @@ app.post('/api/telegramwebhook', function(req, res) {
   if(Name2){Msg+=" "+Name2};
   if(Text){Msg+=": "+Text}else{return;};
 
-  bot.sendMessage({to:"325232154290290698", message: Msg},function(err){
+  bot.sendMessage({to:"325232154290290698", message: Msg, tts:true},function(err){
     if(err){console.log(err)};
   });
 
