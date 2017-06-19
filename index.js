@@ -2,6 +2,7 @@ console.log("Succ Load");
 
 var express = require('express');
 var app = express();
+var request = require('request');
 
 //Landing Page
 var fs = require('fs');
@@ -146,6 +147,24 @@ app.post('/api/telegramwebhook', function(req, res) {
     var From = req.body.message.reply_to_message.from.first_name
     var From2 = req.body.message.reply_to_message.from.last_name
   }
+  var Sticker = req.body.message.sticker
+
+  if(Sticker){
+    var API = "https://api.telegram.org/bot"+process.env.telegramkey
+    var Args = "/getfile?file_id="+req.body.message.sticker.thumb.file_id
+    request(API+Args, function (error, response, body) {
+      if(error){console.log(error)}
+
+      var Link = JSON.parse(body)
+      Link = "https://api.telegram.org/file/bot"+process.env.telegramkey+"/"Link.result.file_path
+      var Msg = "<:telegram:325885123646193666> "
+      if(Name){Msg+="**"+Name+"**"};
+      if(Name2){Msg+=" **"+Name2+"**"};
+      if(Text){Msg+=": "+Link}else{return;};
+
+    });
+    return;
+  };
 
   var Msg = "<:telegram:325885123646193666> "
   if(ValidReply){
@@ -166,7 +185,7 @@ app.post('/api/telegramwebhook', function(req, res) {
 });
 
 //Event for messages in discord
-var request = require('request');
+
 disbot.on('message', function(user, userID, channelID, message, event){
 
   console.log("UID: " + userID)
