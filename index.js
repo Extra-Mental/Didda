@@ -163,7 +163,12 @@ app.post('/api/telegramwebhook', function(req, res) {
 
       download.image({url: File, dest:"/tmp"}).then(({ filename, image }) => {
         console.log('File saved to', filename)
-        disbot.uploadFile({to:"325232154290290698", file: filename},function(err){
+        var Msg = "<:telegram:325885123646193666> **"
+        if(From){Msg+=From};
+        if(From2){Msg+=" "+From2};
+        Msg+="**"
+
+        disbot.uploadFile({to:"325232154290290698", file: filename, Message: Msg},function(err){
           if(err){console.log(err)};
         });
       }).catch((err) => {
