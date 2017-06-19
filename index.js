@@ -161,7 +161,7 @@ app.post('/api/telegramwebhook', function(req, res) {
       request(File).pipe(fs.createWriteStream("/tmp/"+req.body.message.sticker.file_id)).on('close', function(){
         disbot.uploadFile({to:"325232154290290698", file: "/tmp/"+req.body.message.sticker.file_id},function(err){
           if(err){console.log(err)};
-        });)
+        });
       });
 
     });
