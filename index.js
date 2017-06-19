@@ -156,11 +156,8 @@ app.post('/api/telegramwebhook', function(req, res) {
       if(error){console.log(error)}
 
       var Link = JSON.parse(body)
-      Link = "https://api.telegram.org/file/bot"+process.env.telegramkey+"/"Link.result.file_path
-      var Msg = "<:telegram:325885123646193666> "
-      if(Name){Msg+="**"+Name+"**"};
-      if(Name2){Msg+=" **"+Name2+"**"};
-      if(Text){Msg+=": "+Link}else{return;};
+      var File = "https://api.telegram.org/file/bot"+process.env.telegramkey+"/"+Link.result.file_path
+      console.log(File)
 
     });
     return;
