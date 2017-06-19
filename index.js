@@ -159,7 +159,7 @@ app.post('/api/telegramwebhook', function(req, res) {
       var Link = JSON.parse(body)
       var File = "https://api.telegram.org/file/bot"+process.env.telegramkey+"/"+Link.result.file_path
       request(File).pipe(fs.createWriteStream("/tmp/temp")).on('close', function(){
-        disbot.uploadFile({to:"325232154290290698", file: "/tmp/temp"},function(err){
+        disbot.uploadFile({to:"325232154290290698", file: "/tmp/temp",filename: "temp"},function(err){
           if(err){console.log(err)};
         });
       });
