@@ -174,9 +174,10 @@ disbot.on('message', function(user, userID, channelID, message, event){
   if(userID == 325240477290856450){return;};
 
   console.log("Sending message to telegram")
-  var API = "https://api.telegram.org/bot"+process.env.telegramkey+"/sendmessage?chat_id=-112659114&text="+encodeURIComponent(user+": "+message)
+  var API = "https://api.telegram.org/bot"+process.env.telegramkey
+  var Args = "/sendmessage?chat_id=-112659114&parse_mode=\"Markdown\"&text="+encodeURIComponent("**"+user+"**: "+message)
 
-  request(API, function (error, response, body) {
+  request(API+Args, function (error, response, body) {
     if(error){console.log(error)}
   });
 
