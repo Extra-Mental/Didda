@@ -3,6 +3,7 @@ console.log("Succ Load");
 var express = require('express');
 var app = express();
 var request = require('request');
+var fs = require("fs");
 
 //Landing Page
 var fs = require('fs');
@@ -157,7 +158,11 @@ app.post('/api/telegramwebhook', function(req, res) {
 
       var Link = JSON.parse(body)
       var File = "https://api.telegram.org/file/bot"+process.env.telegramkey+"/"+Link.result.file_path
-      console.log(File)
+      request(File).pipe(fs.createWriteStream("/tmp/"+req.body.message.sticker.file_id)).on('close', function(){
+        disbot.uploadFile({to:"325232154290290698", file: "/tmp/"+req.body.message.sticker.file_id},function(err){
+          if(err){console.log(err)};
+        });)
+      });
 
     });
     return;
