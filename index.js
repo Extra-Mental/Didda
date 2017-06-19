@@ -170,12 +170,6 @@ app.post('/api/telegramwebhook', function(req, res) {
         throw err
       })
 
-
-
-      request(File).pipe(fs.createWriteStream("/tmp")).on('close', function(){
-
-      });
-
     });
     return;
   };
