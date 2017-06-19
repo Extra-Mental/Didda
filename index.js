@@ -163,8 +163,7 @@ app.post('/api/telegramwebhook', function(req, res) {
 
       download.image({url: File, dest:"/tmp"}).then(({ filename, image }) => {
         console.log('File saved to', filename)
-        var FileName = Link.result.file_path.split("/").indexOf(2)
-        disbot.uploadFile({to:"325232154290290698", file: "/tmp/"+FileName},function(err){
+        disbot.uploadFile({to:"325232154290290698", file: filename},function(err){
           if(err){console.log(err)};
         });
       }).catch((err) => {
