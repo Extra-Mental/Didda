@@ -11,7 +11,8 @@
     "apiai": "4.0.2",
     "body-parser": "1.17.2",
     "discord.io": "2.5.1",
-    "request": "2.81.0"
+    "request": "2.81.0",
+    "image-downloader": "3.2.2"
   }
 
 }

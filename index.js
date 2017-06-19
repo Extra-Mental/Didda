@@ -4,6 +4,8 @@ var express = require('express');
 var app = express();
 var request = require('request');
 var fs = require("fs");
+const download = require('image-downloader')
+
 
 //Landing Page
 var fs = require('fs');
@@ -158,11 +160,20 @@ app.post('/api/telegramwebhook', function(req, res) {
 
       var Link = JSON.parse(body)
       var File = "https://api.telegram.org/file/bot"+process.env.telegramkey+"/"+Link.result.file_path
-      request(File).pipe(fs.createWriteStream("/tmp")).on('close', function(){
+
+      download.image({url: File, dest:"/tmp"}).then(({ filename, image }) => {
         var FileName = Link.result.file_path.split("/").indexOf(2)
         disbot.uploadFile({to:"325232154290290698", file: "/tmp/"+FileName},function(err){
           if(err){console.log(err)};
           });
+      }).catch((err) => {
+        throw err
+      })
+
+
+
+      request(File).pipe(fs.createWriteStream("/tmp")).on('close', function(){
+
       });
 
     });
