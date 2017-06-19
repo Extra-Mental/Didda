@@ -151,7 +151,7 @@ app.post('/api/telegramwebhook', function(req, res) {
 
   if(Sticker){
     var API = "https://api.telegram.org/bot"+process.env.telegramkey
-    var Args = "/getfile?file_id="+req.body.message.sticker.thumb.file_id
+    var Args = "/getfile?file_id="+req.body.message.sticker.file_id
     request(API+Args, function (error, response, body) {
       if(error){console.log(error)}
 
