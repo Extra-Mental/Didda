@@ -168,7 +168,7 @@ app.post('/api/telegramwebhook', function(req, res) {
         if(From2){Msg+=" "+From2};
         Msg+="**"
 
-        disbot.uploadFile({to:"325232154290290698", file: filename, Message: Msg},function(err){
+        disbot.uploadFile({to:"325232154290290698", file: filename, message: Msg},function(err){
           if(err){console.log(err)};
         });
       }).catch((err) => {
