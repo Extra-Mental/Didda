@@ -175,7 +175,7 @@ disbot.on('message', function(user, userID, channelID, message, event){
 
   console.log("Sending message to telegram")
   var API = "https://api.telegram.org/bot"+process.env.telegramkey
-  var Args = "/sendmessage?chat_id=-112659114&parse_mode=\"Markdown\"&text="+encodeURIComponent("**"+user+"**: "+message)
+  var Args = "/sendmessage?chat_id=-112659114&parse_mode=\"Markdown\"&text="+encodeURIComponent("*"+user+"*: "+message)
 
   request(API+Args, function (error, response, body) {
     if(error){console.log(error)}
