@@ -155,7 +155,7 @@ app.post('/api/telegramwebhook', function(req, res) {
     request(API+Args, function (error, response, body) {
       if(error){console.log(error)}
 
-      var Link = JSON.parse(body)
+      var Link = JSON.parse(response)
       var File = "https://api.telegram.org/file/bot"+process.env.telegramkey+"/"+Link.result.file_path
       console.log(File)
 
