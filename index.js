@@ -90,30 +90,6 @@ app.get('/api', function(req, res) {//Need to change this to /api/steamgcommunit
 
 });
 
-//Wit.ai requests
-const {Wit, log} = require('node-wit');
-app.get('/api/wit', function(req, res) {
-  var key = req.query.key;
-  if(!key){
-    res.write("Error: Key missing")
-    res.end();
-    return;
-  };
-  if(key != process.env.key){
-    res.write("Error: Invalid key")
-    res.end();
-    return;
-  };
-
-  const client = new Wit({accessToken: process.env.witkey});
-  client.message(decodeURI(req.query.message), {}).then((data) => {
-    console.log('Wit.ai response: ' + JSON.stringify(data));
-    app.set('json spaces', 2);
-    res.json(data)
-    res.end();
-  }).catch(console.error);
-});
-
 //Telegream webhook handler
 var bodyParser = require('body-parser');
 var Discord = require('discord.io');
@@ -218,7 +194,7 @@ disbot.on('message', function(user, userID, channelID, message, event){
 
 //Bright Spark Relay API
 
-app.get('/api/wit', function(req, res) {
+app.get('/api/bsrelay', function(req, res) {
   var key = req.query.key;
   if(!key){
     res.write("Error: Key missing")
