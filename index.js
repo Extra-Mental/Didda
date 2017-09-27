@@ -225,6 +225,9 @@ app.get('/api/bsrelay', function(req, res) {
     if(err){console.log(err)};
   });
 
+  res.write("Success!")
+  res.end()
+
 });
 
 //Listen
