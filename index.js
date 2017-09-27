@@ -215,5 +215,41 @@ disbot.on('message', function(user, userID, channelID, message, event){
 
 });
 
+
+//Bright Spark Relay API
+
+app.get('/api/wit', function(req, res) {
+  var key = req.query.key;
+  if(!key){
+    res.write("Error: Key missing")
+    res.end();
+    return;
+  };
+  if(key != process.env.key){
+    res.write("Error: Invalid key")
+    res.end();
+    return;
+  };
+
+  var ChannelID = req.query.channelid;
+  if(!ChannelID){
+    res.write("Error: No ChannelID")
+    res.end();
+    return;
+  };
+
+  var Msg = req.query.message;
+  if(!Msg){
+    res.write("Error: No Message")
+    res.end();
+    return;
+  };
+
+  disbot.sendMessage({to:""+ChannelID, message: Msg, tts:false},function(err){
+    if(err){console.log(err)};
+  });
+
+});
+
 //Listen
 app.listen((process.env.PORT || 8080));
