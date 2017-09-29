@@ -180,6 +180,7 @@ disbot.on('message', function(user, userID, channelID, message, event){
   console.log("UID: " + userID)
 
   if(userID == 325240477290856450){return;};
+  if(channelID != 325232154290290698){return;};
 
   console.log("Sending message to telegram")
   var API = "https://api.telegram.org/bot"+process.env.telegramkey
