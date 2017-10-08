@@ -25,7 +25,7 @@ BODY
 	//margin-top: -120px;
 	//margin-left: -150px;
 	width: 300px;
-	transition:20s;
+	transition:10s;
 	animation:ease-in-out;
 }
 #diamond2
@@ -36,7 +36,7 @@ BODY
 	//margin-top: -120px;
 	//margin-left: -150px;
 	width: 300px;
-	transition:20s;
+	transition:10s;
 	animation:ease-in-out;
 }
 #diamond3
@@ -47,7 +47,7 @@ BODY
 	//margin-top: -120px;
 	//margin-left: -150px;
 	width: 300px;
-	transition:20s;
+	transition:10s;
 	animation:ease-in-out;
 }
 #diamondTop
@@ -58,7 +58,6 @@ BODY
 	//margin-top: -120px;
 	//margin-left: -150px;
 	width: 300px;
-	transition:20s;
 	animation:ease-in-out;
 }
 
