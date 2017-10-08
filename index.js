@@ -11,7 +11,7 @@ const download = require('image-downloader')
 var fs = require('fs');
 app.use(express.static('landing'));
 app.get('/', function(req, res) {
-  fs.readFile('landing/landing.html',function (err, data){
+  fs.readFile('landing/index.html',function (err, data){
         res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
         res.write(data);
         res.end();

@@ -14,6 +14,52 @@ BODY
 	margin-top: -120px;
 	margin-left: -150px;
 	width: 300px;
+	height: 300px;
+}
+
+#diamond1
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	//margin-top: -120px;
+	//margin-left: -150px;
+	width: 300px;
+	transition:20s;
+	animation:ease-in-out;
+}
+#diamond2
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	//margin-top: -120px;
+	//margin-left: -150px;
+	width: 300px;
+	transition:20s;
+	animation:ease-in-out;
+}
+#diamond3
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	//margin-top: -120px;
+	//margin-left: -150px;
+	width: 300px;
+	transition:20s;
+	animation:ease-in-out;
+}
+#diamondTop
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	//margin-top: -120px;
+	//margin-left: -150px;
+	width: 300px;
+	transition:20s;
+	animation:ease-in-out;
 }
 
 .progressbar
@@ -87,6 +133,7 @@ BODY
 	text-align: center;
 	width: 50px;
 	height: 50px;
+	margin-top: 100%;
 	font-weight: bold;
 	border-radius: 3px;
 	display: inline-block;
