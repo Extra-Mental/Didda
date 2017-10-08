@@ -27,6 +27,7 @@ BODY
 	width: 300px;
 	transition:10s;
 	animation:ease-in-out;
+	transform: rotate(45deg);
 }
 #diamond2
 {
@@ -38,6 +39,7 @@ BODY
 	width: 300px;
 	transition:10s;
 	animation:ease-in-out;
+	transform: rotate(-45deg);
 }
 #diamond3
 {
@@ -49,6 +51,7 @@ BODY
 	width: 300px;
 	transition:10s;
 	animation:ease-in-out;
+	transform: rotate(90deg);
 }
 #diamondTop
 {
