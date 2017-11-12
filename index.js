@@ -196,7 +196,7 @@ disbot.on('message', function(user, userID, channelID, message, event){
 //Bright Spark Relay API
 
 var LastMsg = {}
-var LastMsgID = 0
+var LastMsgID = {}
 var MsgCount = 1
 
 app.get('/api/bsrelay', function(req, res) {
