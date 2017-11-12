@@ -197,6 +197,7 @@ disbot.on('message', function(user, userID, channelID, message, event){
 
 var LastMsg
 var LastMsgID
+var MsgCount = 1
 
 app.get('/api/bsrelay', function(req, res) {
   var key = req.query.key;
@@ -225,6 +226,25 @@ app.get('/api/bsrelay', function(req, res) {
     return;
   };
 
+  //Count up repeated messages rather than spam the discord
+  if(Msg == LastMsg[ChannelID]){
+    MsgCount[ChannelID] = MsgCount[ChannelID] + 1
+    client.editMessage({channelID:""+ChannelID, messageID: LastMsgID[ChannelID], message: Msg + " - **[x"+MsgCount[ChannelID]+"]**"},function(err, response){
+      if(err){
+        console.log(err);
+        res.write(JSON.stringify({ error: true, status: "Failed to send message to discord"}));
+        res.end();
+        return;
+      };
+
+      //console.log(response);
+      res.write(JSON.stringify({error: false, status: "Successfully sent message to discord", response: response}));
+      res.end();
+      return;
+    });
+  };
+  MsgCount[ChannelID] = 1 //If we made it to this point, reset the counter cause its a different message
+
   disbot.sendMessage({to:""+ChannelID, message: Msg, tts:false},function(err, response){
     if(err){
       console.log(err);
@@ -233,9 +253,12 @@ app.get('/api/bsrelay', function(req, res) {
       return;
     };
 
-    console.log(response);
+    //console.log(response);
     res.write(JSON.stringify({error: false, status: "Successfully sent message to discord", response: response}));
     res.end();
+    LastMsg[ChannelID] = Msg
+    LastMsgID[ChannelID] = response.id
+
   });
 
 
