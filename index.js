@@ -230,7 +230,7 @@ app.get('/api/bsrelay', function(req, res) {
   if(!LastMsg[ChannelID]){LastMsg[ChannelID]=""}
   if(Msg == LastMsg[ChannelID]){
     MsgCount[ChannelID] = MsgCount[ChannelID] + 1
-    client.editMessage({channelID:""+ChannelID, messageID: LastMsgID[ChannelID], message: Msg + " - **[x"+MsgCount[ChannelID]+"]**"},function(err, response){
+    disbot.editMessage({channelID:""+ChannelID, messageID: LastMsgID[ChannelID], message: Msg + " - **[x"+MsgCount[ChannelID]+"]**"},function(err, response){
       if(err){
         console.log(err);
         res.write(JSON.stringify({ error: true, status: "Failed to send message to discord"}));
