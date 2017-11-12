@@ -115,8 +115,8 @@ app.post('/api/telegramwebhook', function(req, res) {
   res.status(200);
   res.send();
 
-  console.log("Telegram Webhook: Successful query")
-  console.log(JSON.stringify(req.body))
+  //console.log("Telegram Webhook: Successful query")
+  //console.log(JSON.stringify(req.body))
   var Name = req.body.message.from.first_name
   var Name2 = req.body.message.from.last_name
   var Text = req.body.message.text
@@ -138,7 +138,7 @@ app.post('/api/telegramwebhook', function(req, res) {
       var File = "https://api.telegram.org/file/bot"+process.env.telegramkey+"/"+Link.result.file_path
 
       download.image({url: File, dest:"/tmp"}).then(({ filename, image }) => {
-        console.log('File saved to', filename)
+        //console.log('File saved to', filename)
         var Msg = "<:telegram:325885123646193666> **"
         if(Name){Msg+=Name};
         if(Name2){Msg+=" "+Name2};
@@ -177,12 +177,12 @@ app.post('/api/telegramwebhook', function(req, res) {
 
 disbot.on('message', function(user, userID, channelID, message, event){
 
-  console.log("UID: " + userID)
+  //console.log("UID: " + userID)
 
   if(userID == 325240477290856450){return;};
   if(channelID != 325232154290290698){return;};
 
-  console.log("Sending message to telegram")
+  //console.log("Sending message to telegram")
   var API = "https://api.telegram.org/bot"+process.env.telegramkey
   var Args = '/sendmessage?chat_id=-112659114&parse_mode=markdown&text='+encodeURIComponent("*"+user+"*: "+message)
 
@@ -194,6 +194,9 @@ disbot.on('message', function(user, userID, channelID, message, event){
 
 
 //Bright Spark Relay API
+
+var LastMsg
+var LastMsgID
 
 app.get('/api/bsrelay', function(req, res) {
   var key = req.query.key;
@@ -222,12 +225,22 @@ app.get('/api/bsrelay', function(req, res) {
     return;
   };
 
-  disbot.sendMessage({to:""+ChannelID, message: Msg, tts:false},function(err){
-    if(err){console.log(err)};
+  if(Msg == LastMsg)
+
+  disbot.sendMessage({to:""+ChannelID, message: Msg, tts:false},function(err, response){
+    if(err){
+      console.log(err);
+      res.write(JSON.stringify({ error: true, status: "Failed to send message to discord"}));
+      res.end();
+      return;
+    };
+
+    console.log(response);
+    res.write(JSON.stringify({error: false, status: "Successfully sent message to discord", response: response}));
+    res.end();
   });
 
-  res.write("Success!")
-  res.end()
+
 
 });
 
