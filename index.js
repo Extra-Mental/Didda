@@ -227,6 +227,7 @@ app.get('/api/bsrelay', function(req, res) {
   };
 
   //Count up repeated messages rather than spam the discord
+  if(!LastMsg[ChannelID]){LastMsg[ChannelID]=""}
   if(Msg == LastMsg[ChannelID]){
     MsgCount[ChannelID] = MsgCount[ChannelID] + 1
     client.editMessage({channelID:""+ChannelID, messageID: LastMsgID[ChannelID], message: Msg + " - **[x"+MsgCount[ChannelID]+"]**"},function(err, response){
