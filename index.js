@@ -225,8 +225,6 @@ app.get('/api/bsrelay', function(req, res) {
     return;
   };
 
-  if(Msg == LastMsg)
-
   disbot.sendMessage({to:""+ChannelID, message: Msg, tts:false},function(err, response){
     if(err){
       console.log(err);
