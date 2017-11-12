@@ -197,7 +197,7 @@ disbot.on('message', function(user, userID, channelID, message, event){
 
 var LastMsg = {}
 var LastMsgID = {}
-var MsgCount = 1
+var MsgCount = {}
 
 app.get('/api/bsrelay', function(req, res) {
   var key = req.query.key;
@@ -241,8 +241,8 @@ app.get('/api/bsrelay', function(req, res) {
       //console.log(response);
       res.write(JSON.stringify({error: false, status: "Successfully sent message to discord", response: response}));
       res.end();
-      return;
     });
+    return;
   };
   MsgCount[ChannelID] = 1 //If we made it to this point, reset the counter cause its a different message
 
